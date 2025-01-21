@@ -1,0 +1,7 @@
+{
+  "name": "ForgotMySuport",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
