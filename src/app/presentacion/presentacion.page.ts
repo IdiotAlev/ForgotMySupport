@@ -14,4 +14,7 @@ export class PresentacionPage implements OnInit {
   ngOnInit() {
   }
 
+  finish() {
+    console.log('Finish');
+  }
 }
