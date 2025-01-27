@@ -7,26 +7,42 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
+      <ion-card-title>ForgotMySupport</ion-card-title>
     </ion-card-header>
 
+    <ion-img src="assets/images/undraw_people_ka7y.svg"alt="Gente"></ion-img>
+
     <ion-card-content>
-      <form [formGroup]="formularioLogin">
+      <form [formGroup]="formularioLogin" (ngSubmit)="ingresar(formularioLogin.value)">
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
+          <br>
+          <ion-input  label="Email" type="Email" label-placement="floating" fill="solid" placeholder="example@gmail.com" formControlName="email"></ion-input>
         </ion-item>
+        <div>
+          <ng-container *ngFor="let error of formErrors.email">
+            <ion-label
+             color="danger" 
+             *ngIf="(formularioLogin.get('email')?.hasError('error.type') && formularioLogin.get('email')?.dirty)">
+             {{error.message}}
+            </ion-label>
+          </ng-container>
+        </div>
     
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input formControlName="psw"></ion-input>
+          <br>
+          <ion-input  label="Contraseña" type="Password" label-placement="floating" fill="solid" placeholder="Adsaw12$#*" formControlName="pws"></ion-input>
         </ion-item>
       </form>
       <br>
       <ion-toolbar slot="end">
 
-        <ion-button (click)="ingresar()">Ingresar</ion-button>
-        <ion-button [routerLink]="['/registro']">Registrarse</ion-button>
+        <ion-button type="submit"
+        [disabled]="!formularioLogin.valid"
+        (click)="ingresar(formularioLogin.value)" >Ingresar
+        </ion-button><br>
+        <ion-label position="floating">¿No tienes cuenta?</ion-label>
+        <br>
+        <ion-button (click)="goRegistro()">Registrarse</ion-button>
 
       </ion-toolbar>
     </ion-card-content>

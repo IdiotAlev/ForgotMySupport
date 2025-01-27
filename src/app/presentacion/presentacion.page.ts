@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-presentacion',
@@ -9,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PresentacionPage implements OnInit {
 
-  constructor() { }
+  constructor(private storage: Storage) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();  
   }
 
   finish() {
     console.log('Finish');
+    this.storage.set('IntroVista', true);
+
   }
 }
